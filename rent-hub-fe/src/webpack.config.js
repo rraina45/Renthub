@@ -1,55 +1,35 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/App.js', // Your entry file
+  entry: './src/App.js',  
   output: {
-    path: path.resolve(__dirname, 'dist'), // Output folder
-    filename: 'bundle.js', // Output filename
-    publicPath: '/', // For React Router
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'], // File extensions for imports
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',  // Output bundled file
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, // Process JS and JSX files
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader', // Transpile ES6+ and JSX
-        },
-      },
-      {
-        test: /\.css$/, // Process CSS files
-        use: ['style-loader', 'css-loader'], // Inject and bundle CSS
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/, // Handle image assets
-        use: {
-          loader: 'file-loader',
+          loader: 'babel-loader',
           options: {
-            name: '[name].[hash].[ext]',
-            outputPath: 'assets/images',
+            presets: ['@babel/preset-env', '@babel/preset-react'],  // Use the React and JS presets
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],  // For loading CSS files
+      },
     ],
   },
-  plugins: [
-    new CleanWebpackPlugin(), // Clean the output folder before each build
-    new HtmlWebpackPlugin({
-      template: './public/index.html', // Your HTML template
-      filename: 'index.html',
-    }),
-  ],
-  devServer: {
-    historyApiFallback: true, // For React Router (SPA)
-    static: {
-      directory: path.join(__dirname, 'public'), // Serve static files
-    },
-    port: 3000, // Dev server port
+  resolve: {
+    extensions: ['.js', '.jsx'],  // Resolve .jsx and .js extensions
   },
-  mode: 'development', // Change to 'production' for production builds
+  devServer: {
+    static: path.resolve(__dirname, 'dist'),  // Serve files from the 'dist' folder
+    port: 3000,  // Port for dev server
+  },
+  mode: 'development',  // or 'production' for production build
 };
