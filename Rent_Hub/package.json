@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.19.1",
     "install": "^0.13.0",
-    "mongoose": "^8.2.3"
+    "mongoose": "^8.2.3",
+    "react-scripts": "^5.0.1"
   }
 }
