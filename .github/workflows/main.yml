@@ -52,4 +52,4 @@ jobs:
     ssh -i dev.pem ubuntu@18.222.21.30 << 'EOF'
       cd /home/ubuntu/app
       pm2 restart all || pm2 start npm --name "app" -- start
-EOF
+      EOF
