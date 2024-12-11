@@ -24,13 +24,15 @@ jobs:
     - name: Change directory to Renthub
       run: cd Rent_Hub
 
-    - name: Install dependencies
+    - name: Install dependencies (Rent Hub)
       run: |
         cd Rent_Hub
         npm install
-    - name: Install dependencies
-      run: npm install
-      working-directory: rent-hub-fe 
+
+    - name: Install dependencies (Rent Hub Frontend)
+      run: |
+        cd rent-hub-fe
+        npm install
 
     - name: Build project
       run: |
@@ -39,8 +41,12 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        cd Rent_Hub
-        scp -i /path/to/dev.pem -r ./build/ ubuntu@18.222.21.30:/home/ubuntu/app
-        ssh -i /path/to/dev.pem ubuntu@18.222.21.30 'cd /home/ubuntu/app && pm2 restart all || pm2 start npm --name "app" -- start'
+        echo "$PRIVATE_KEY" > dev.pem
+        chmod 600 dev.pem  # Set proper permissions for the key file
+        scp -i dev.pem -r rent-hub-fe/build/ ubuntu@ec2-18-222-21-30.us-east-2.compute.amazonaws.com
+        ssh -i dev.pem ubuntu@18.222.21.30 << 'EOF'
+          cd /home/ubuntu/app
+          pm2 restart all || pm2 start npm --name "app" -- start
+        EOF
       env:
         PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
