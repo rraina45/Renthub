@@ -26,12 +26,12 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cd Renthub
+        cd Rent_Hub
         npm install
 
     - name: Build project
       run: |
-        cd Renthub
+        cd Rent_Hub
         npm run build
 
     - name: Deploy to EC2
