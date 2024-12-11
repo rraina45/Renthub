@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9be93ec6.css",
+    "main.js": "/static/js/main.c89befee.js",
+    "static/js/453.175adf08.chunk.js": "/static/js/453.175adf08.chunk.js",
+    "static/media/lambton.jpg": "/static/media/lambton.877a9ffd89d3ccb409b6.jpg",
+    "static/media/logo.jpg": "/static/media/logo.2038f7646ff5d1a00bd2.jpg",
+    "index.html": "/index.html",
+    "main.9be93ec6.css.map": "/static/css/main.9be93ec6.css.map",
+    "main.c89befee.js.map": "/static/js/main.c89befee.js.map",
+    "453.175adf08.chunk.js.map": "/static/js/453.175adf08.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9be93ec6.css",
+    "static/js/main.c89befee.js"
+  ]
+}
