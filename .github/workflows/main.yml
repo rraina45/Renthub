@@ -38,9 +38,18 @@ jobs:
         npm run build
 
     - name: Deploy to EC2
-      run: |
-        cd Rent_Hub
-        scp -i /path/to/dev.pem -r ./build/ ubuntu@18.222.21.30:/home/ubuntu/app
-        ssh -i /path/to/dev.pem ubuntu@18.222.21.30 'cd /home/ubuntu/app && pm2 restart all || pm2 start npm --name "app" -- start'
-      env:
-        PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+  env:
+    PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+  run: |
+    # Decode the private key and save it to a file
+    echo "$PRIVATE_KEY" > dev.pem
+    chmod 600 dev.pem  # Set proper permissions for the key file
+
+    
+    scp -i dev.pem -r rent-hub-fe/build/ ubuntu@18.222.21.30:/home/ubuntu/app
+
+    
+    ssh -i dev.pem ubuntu@18.222.21.30 << 'EOF'
+      cd /home/ubuntu/app
+      pm2 restart all || pm2 start npm --name "app" -- start
+EOF
