@@ -21,18 +21,23 @@ jobs:
       with:
         node-version: '18'
 
+    - name: Change directory to Renthub
+      run: cd Renthub
+
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd Renthub
+        npm install
 
     - name: Build project
-      run: npm run build 
+      run: |
+        cd Renthub
+        npm run build
 
     - name: Deploy to EC2
       run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.EC2_PRIVATE_KEY }}" > ~/.ssh/dev.pem  # Write the private key to a file
-        chmod 600 ~/.ssh/dev.pem  # Set the correct permissions for the private key
-        scp -i ~/.ssh/dev.pem -r ./build/ ubuntu@18.222.21.30:/home/ubuntu/app
-        ssh -i ~/.ssh/dev.pem ubuntu@18.222.21.30 'cd /home/ubuntu/app && pm2 restart all || pm2 start npm --name "app" -- start'
+        cd Renthub
+        scp -i /path/to/dev.pem -r ./build/ ubuntu@18.222.21.30:/home/ubuntu/app
+        ssh -i /path/to/dev.pem ubuntu@18.222.21.30 'cd /home/ubuntu/app && pm2 restart all || pm2 start npm --name "app" -- start'
       env:
         PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
