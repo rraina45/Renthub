@@ -22,7 +22,7 @@ jobs:
         node-version: '18'
 
     - name: Change directory to Renthub
-      run: cd Renthub
+      run: cd Rent_Hub
 
     - name: Install dependencies
       run: |
@@ -36,7 +36,7 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        cd Renthub
+        cd Rent_Hub
         scp -i /path/to/dev.pem -r ./build/ ubuntu@18.222.21.30:/home/ubuntu/app
         ssh -i /path/to/dev.pem ubuntu@18.222.21.30 'cd /home/ubuntu/app && pm2 restart all || pm2 start npm --name "app" -- start'
       env:
