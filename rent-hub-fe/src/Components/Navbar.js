@@ -1,7 +1,7 @@
 
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useUser from "../Hooks/useUser";
+import useUser from "../Hooks/useUser.js";
 import { getAuth, signOut } from "firebase/auth";
 import logo from "../Images/logo.jpg";
 
