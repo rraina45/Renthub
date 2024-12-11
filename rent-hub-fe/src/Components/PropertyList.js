@@ -9,7 +9,7 @@ const PropertyList = () => {
   const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/properties')
+    axios.get('http://localhost:3000/properties')
       .then(response => {
         const reversedProperties = response.data.properties.reverse();
         setProperties(reversedProperties);
