@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import About from '../pages/about';
-import Services from '../pages/services';
-import Contact from '../pages/contact';
-import Blog from '../pages/FAQ';
-import NotFound from '../pages/NotFound';
+import About from '../pages/about.jsx';
+import Services from '../pages/services.jsx';
+import Contact from '../pages/contact.jsx';
+import Blog from '../pages/FAQ.jsx';
+import NotFound from '../pages/NotFound.jsx';
 import { ImLinkedin2 } from "react-icons/im";
 import { LuTwitter } from "react-icons/lu";
 import { FaInstagram } from "react-icons/fa";
