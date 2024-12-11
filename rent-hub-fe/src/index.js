@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
 import { Toaster } from "react-hot-toast";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
