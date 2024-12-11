@@ -31,7 +31,7 @@ jobs:
 
     - name: Build project
       run: |
-        cd Rent_Hub
+        cd rent-hub-fe
         npm run build
 
     - name: Deploy to EC2
