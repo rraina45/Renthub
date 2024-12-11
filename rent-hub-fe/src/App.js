@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 //import Filter from './Components/Filter';
-import FormRooms from './Components/FormRooms';
-import Navbar from './Components/Navbar';
-import PropertyList from './Components/PropertyList';
-import PropertyDetails from './Components/PropertyDetails';
-import CreateAccount from './Components/CreateAccount';
-import LoginPage from './Components/LoginPage';
-import useUser from './Hooks/useUser';
-import Footer from './Components/Footer';
-import About from './pages/about';
-import Contact from './pages/contact';
-import Services from './pages/services';
-import FAQs from './pages/FAQ';
-import NotFound from './pages/NotFound';
+import FormRooms from './Components/FormRooms.js';
+import Navbar from './Components/Navbar.js';
+import PropertyList from './Components/PropertyList.js';
+import PropertyDetails from './Components/PropertyDetails.js';
+import CreateAccount from './Components/CreateAccount.js';
+import LoginPage from './Components/LoginPage.js';
+import useUser from './Hooks/useUser.js';
+import Footer from './Components/Footer.js';
+import About from './pages/about.jsx';
+import Contact from './pages/contact.jsx';
+import Services from './pages/services.jsx';
+import FAQs from './pages/FAQ.jsx';
+import NotFound from './pages/NotFound.jsx';
 function App() {
   const {user, isLoading} = useUser()
   return (
