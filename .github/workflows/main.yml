@@ -54,3 +54,4 @@ jobs:
           pm2 restart all || pm2 start npm --name "app" -- start
         EOF
       env:
+        PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
