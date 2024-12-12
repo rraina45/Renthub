@@ -41,6 +41,7 @@ jobs:
 
     - name: Add host key
       run: |
+        mkdir -p ~/.ssh  # Ensure the .ssh directory exists
         ssh-keyscan -H ec2-18-222-21-30.us-east-2.compute.amazonaws.com >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
@@ -53,4 +54,3 @@ jobs:
           pm2 restart all || pm2 start npm --name "app" -- start
         EOF
       env:
-        PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
