@@ -1,23 +1,31 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import firebase from 'firebase/app';
 import 'firebaseui/dist/firebaseui.css';
 import * as firebaseui from 'firebaseui';
+import useUser from "../Hooks/useUser"; // Import the useUser hook
 
 const LoginPage = () => {
+    const { user, isLoading } = useUser(); // Get user and loading state from the useUser hook
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        // If the user is already logged in, navigate to form-room immediately
+        if (!isLoading && user) {
+            navigate('/form-room');
+        }
+    }, [user, isLoading, navigate]); // Trigger useEffect when user state changes
+
     const logIn = async () => {
         try {
             await signInWithEmailAndPassword(getAuth(), email, password);
-            navigate('/form-room');
+            navigate('/form-room'); // Navigate to form-room after successful login
         } catch (e) {
-            setError(e.message);
+            setError(e.message); // Display error if login fails
         }
     }
 
@@ -26,7 +34,7 @@ const LoginPage = () => {
             signInSuccessUrl: '/form-room',
             signInOptions: [
                 GoogleAuthProvider.PROVIDER_ID,
-                // Add more providers if needed
+                
             ],
         };
 

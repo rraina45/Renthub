@@ -25,7 +25,7 @@ function App() {
             <Route path="/" element={<PropertyList/>} />
             <Route path="/form-room" element={user ? <FormRooms/> : <LoginPage/> } />
             <Route path="/property/:id" element={<PropertyDetails/>} />
-            <Route path="/Loginpage" element={<LoginPage/>} />
+            <Route path="/loginpage" element={<LoginPage/>} />
             <Route path="/CreateAccount" element={<CreateAccount/>} />
             <Route path="/about" element={<About/>}/>
                
